@@ -26,10 +26,6 @@ headers = {
 
 login_response = session.post(login_url, data=login_payload, headers=headers)
 
-print("Login status:", login_response.status_code)
-print("Cookies:", session.cookies.get_dict())
-
-
 # 2. APPEL API AVEC PAGINATION
 url = "https://v1.cathedis.delivery/ws/action"
 
@@ -53,10 +49,6 @@ while True:
     }
 
     response = session.post(url, json=payload, headers=headers)
-
-    print(f"Status (offset={offset}):", response.status_code)
-    print("Response:", response.text)
-
     result = response.json()
     all_responses.append(result)
 
@@ -75,4 +67,4 @@ while True:
 
     offset += LIMIT
 
-print(f"\nTotal pages récupérées : {len(all_responses)}")
+print(all_responses)
