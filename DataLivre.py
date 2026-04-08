@@ -34,7 +34,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-LIMIT = 40
+LIMIT = 1000
 offset = 0
 all_responses = []
 
@@ -67,11 +67,11 @@ while True:
         break
 
     offset += LIMIT
-
+allProduct = []
 for d in all_responses:
 
     Data = d["data"]
-    allProduct = []
+
     for Dat in Data:
         all_data = Dat["values"]["deliveries"]
         for l in all_data:
@@ -86,7 +86,7 @@ for d in all_responses:
 df = pd.DataFrame(allProduct)
 
 df.to_excel(
-    r"C:\Users\Anas\Desktop\PythonDataAnalyst\Matjarekom.xlsx",
+    r"C:\Users\Anas\Desktop\MatjarEkom\Matjarekom.xlsx",
     index=False,
     engine="openpyxl"
 )
